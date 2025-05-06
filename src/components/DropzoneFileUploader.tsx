@@ -345,7 +345,7 @@ export default function DropzoneFileUploader({ onUploadComplete, onError }: File
       </DialogTrigger>
       <DialogContent className="sm:max-w-[600px]">
         <DialogHeader>
-          <DialogTitle className="text-center">File Uploader</DialogTitle>
+          <DialogTitle className="text-center">Upload photos & videos</DialogTitle>
         </DialogHeader>
 
         <div className="space-y-4">
@@ -395,7 +395,7 @@ export default function DropzoneFileUploader({ onUploadComplete, onError }: File
                     {getStatusIcon(file.status)}
                     <button
                       onClick={() => removeFile(file.id)}
-                      className="p-1 rounded-full hover:bg-muted"
+                      className="p-1 rounded-full hover:bg-muted cursor-pointer"
                       disabled={file.status === 'uploading'}
                     >
                       <X className="w-4 h-4" />

@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import UppyFileUploader from '@/components/UppyFileUploader';
 
-export default function Home() {
+export default function UppyPage() {
   const [uploadedFileUrls, setUploadedFileUrls] = useState<string[]>([]);
   const [error, setError] = useState<string | null>(null);
 
