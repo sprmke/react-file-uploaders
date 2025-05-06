@@ -17,6 +17,9 @@ importers:
       '@radix-ui/react-dialog':
         specifier: ^1.1.13
         version: 1.1.13(@types/react-dom@19.1.1(@types/react@19.1.0))(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@radix-ui/react-progress':
+        specifier: ^1.1.6
+        version: 1.1.6(@types/react-dom@19.1.1(@types/react@19.1.0))(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@radix-ui/react-slot':
         specifier: ^1.1.2
         version: 1.1.2(@types/react@19.1.0)(react@19.1.0)
@@ -38,12 +41,21 @@ importers:
       '@uppy/drag-drop':
         specifier: ^4.1.2
         version: 4.1.2(@uppy/core@4.4.4)
+      '@uppy/dropbox':
+        specifier: ^4.2.2
+        version: 4.2.2(@uppy/core@4.4.4)
       '@uppy/file-input':
         specifier: ^4.1.2
         version: 4.1.2(@uppy/core@4.4.4)
+      '@uppy/google-drive':
+        specifier: ^4.3.2
+        version: 4.3.2(@uppy/core@4.4.4)
       '@uppy/image-editor':
         specifier: ^3.3.2
         version: 3.3.2(@uppy/core@4.4.4)
+      '@uppy/onedrive':
+        specifier: ^4.2.3
+        version: 4.2.3(@uppy/core@4.4.4)
       '@uppy/progress-bar':
         specifier: ^4.2.1
         version: 4.2.1(@uppy/core@4.4.4)
@@ -77,6 +89,9 @@ importers:
       react-dom:
         specifier: ^19.0.0
         version: 19.1.0(react@19.1.0)
+      react-dropzone:
+        specifier: ^14.3.8
+        version: 14.3.8(react@19.1.0)
       tailwind-merge:
         specifier: ^3.1.0
         version: 3.1.0
@@ -994,6 +1009,19 @@ packages:
       '@types/react-dom':
         optional: true
 
+  '@radix-ui/react-progress@1.1.6':
+    resolution: {integrity: sha512-QzN9a36nKk2eZKMf9EBCia35x3TT+SOgZuzQBVIHyRrmYYi73VYBRK3zKwdJ6az/F5IZ6QlacGJBg7zfB85liA==}
+    peerDependencies:
+      '@types/react': '*'
+      '@types/react-dom': '*'
+      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+      react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      '@types/react-dom':
+        optional: true
+
   '@radix-ui/react-slot@1.1.2':
     resolution: {integrity: sha512-YAKxaiGsSQJ38VzKH86/BPRC4rh+b1Jpa+JneA5LRE7skmLPNAyeG8kPJj/oo4STLvlrs8vkf/iYyc3A5stYCQ==}
     peerDependencies:
@@ -1682,8 +1710,18 @@ packages:
     peerDependencies:
       '@uppy/core': ^4.4.4
 
+  '@uppy/dropbox@4.2.2':
+    resolution: {integrity: sha512-ssMa/QPeDwGFJcYW8cnipqSDLOcOTGE5nTQG50hPWAQEs7rd3lzxv4YlPwsZFTNJcp0z2L0+ss5w5Dx84vDjMg==}
+    peerDependencies:
+      '@uppy/core': ^4.4.4
+
   '@uppy/file-input@4.1.2':
     resolution: {integrity: sha512-tpxT41/00wI3WzqzbRaBPf9bphWYT8XMPxDhPhUqG7Y+k29PLhCu0rL57m/pvOfOWundug4E1CAejo9V01FNRg==}
+    peerDependencies:
+      '@uppy/core': ^4.4.4
+
+  '@uppy/google-drive@4.3.2':
+    resolution: {integrity: sha512-h4AhEyllqM6Kun8g7vVIHtchqPD7l5L/lzfVBulD9dgwlOihyrI2vsAO9CnunzDXHDme37hgrOraCavJ7sRJ0Q==}
     peerDependencies:
       '@uppy/core': ^4.4.4
 
@@ -1696,6 +1734,11 @@ packages:
     resolution: {integrity: sha512-0en8Py47pl6RMDrgUfqFoF807W5kK5AKVJNT1SkTsLiGg5anmTIMuvmNG3k6LN4cn9P/rKyEHSdGcoBBUj9u7Q==}
     peerDependencies:
       '@uppy/core': ^4.4.1
+
+  '@uppy/onedrive@4.2.3':
+    resolution: {integrity: sha512-24IgzA5WfDkbHXqkliNrOc7gUdIOGyL0sdFHiikL02frBEFbYUQKL4OjIgVvlj91oPNwE2W1r4sUl93xbT+MVA==}
+    peerDependencies:
+      '@uppy/core': ^4.4.4
 
   '@uppy/progress-bar@4.2.1':
     resolution: {integrity: sha512-5TrUYYt1e/Qy4L4GS7pHeH9I9/zYpp7SiJzC5BtYlku5J6yxZbdxpMPW1mBhQqW+ou/IByaVIGFIR6iSq6yo0w==}
@@ -1969,6 +2012,10 @@ packages:
 
   asynckit@0.4.0:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
+
+  attr-accept@2.2.5:
+    resolution: {integrity: sha512-0bDNnY/u6pPwHDMoF0FieU354oBi0a8rD9FcsLwzcGWbc8KS8KPIi7y+s13OlVY+gMWc/9xEMUgNE6Qm8ZllYQ==}
+    engines: {node: '>=4'}
 
   available-typed-arrays@1.0.7:
     resolution: {integrity: sha512-wvUjBtSGN7+7SjNpq/9M2Tg350UZD3q62IFZLbRAR1bSMlCo1ZaeW+BJ+D090e4hIIZLBcTDWe4Mh4jvUDajzQ==}
@@ -2502,6 +2549,10 @@ packages:
   file-entry-cache@8.0.0:
     resolution: {integrity: sha512-XXTUwCvisa5oacNGRP9SfNtYBNAMi+RPwBFmblZEF7N7swHYQS6/Zfk7SRwx4D5j3CH211YNRco1DEMNVfZCnQ==}
     engines: {node: '>=16.0.0'}
+
+  file-selector@2.1.2:
+    resolution: {integrity: sha512-QgXo+mXTe8ljeqUFaX3QVHc5osSItJ/Km+xpocx0aSqWGMSCf6qYs/VnzZgS864Pjn5iceMRFigeAV7AfTlaig==}
+    engines: {node: '>= 12'}
 
   fill-range@7.1.1:
     resolution: {integrity: sha512-YsGpe3WHLK8ZYi4tWDg2Jy3ebRz2rXowDxnld4bkQB00cc/1Zw9AWnC0i9ztDJitivtQvaI9KaLyKrc+hBW0yg==}
@@ -3348,6 +3399,12 @@ packages:
     resolution: {integrity: sha512-Xs1hdnE+DyKgeHJeJznQmYMIBG3TKIHJJT95Q58nHLSrElKlGQqDTR2HQ9fx5CN/Gk6Vh/kupBTDLU11/nDk/g==}
     peerDependencies:
       react: ^19.1.0
+
+  react-dropzone@14.3.8:
+    resolution: {integrity: sha512-sBgODnq+lcA4P296DY4wacOZz3JFpD99fp+hb//iBO2HHnyeZU3FwWyXJ6salNpqQdsZrgMrotuko/BdJMV8Ug==}
+    engines: {node: '>= 10.13'}
+    peerDependencies:
+      react: '>= 16.8 || 18.0.0'
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
@@ -5072,6 +5129,16 @@ snapshots:
       '@types/react': 19.1.0
       '@types/react-dom': 19.1.1(@types/react@19.1.0)
 
+  '@radix-ui/react-progress@1.1.6(@types/react-dom@19.1.1(@types/react@19.1.0))(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+    dependencies:
+      '@radix-ui/react-context': 1.1.2(@types/react@19.1.0)(react@19.1.0)
+      '@radix-ui/react-primitive': 2.1.2(@types/react-dom@19.1.1(@types/react@19.1.0))(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+    optionalDependencies:
+      '@types/react': 19.1.0
+      '@types/react-dom': 19.1.1(@types/react@19.1.0)
+
   '@radix-ui/react-slot@1.1.2(@types/react@19.1.0)(react@19.1.0)':
     dependencies:
       '@radix-ui/react-compose-refs': 1.1.1(@types/react@19.1.0)(react@19.1.0)
@@ -5843,9 +5910,25 @@ snapshots:
       '@uppy/utils': 6.1.3
       preact: 10.26.4
 
+  '@uppy/dropbox@4.2.2(@uppy/core@4.4.4)':
+    dependencies:
+      '@uppy/companion-client': 4.4.1(@uppy/core@4.4.4)
+      '@uppy/core': 4.4.4
+      '@uppy/provider-views': 4.4.3(@uppy/core@4.4.4)
+      '@uppy/utils': 6.1.3
+      preact: 10.26.4
+
   '@uppy/file-input@4.1.2(@uppy/core@4.4.4)':
     dependencies:
       '@uppy/core': 4.4.4
+      '@uppy/utils': 6.1.3
+      preact: 10.26.4
+
+  '@uppy/google-drive@4.3.2(@uppy/core@4.4.4)':
+    dependencies:
+      '@uppy/companion-client': 4.4.1(@uppy/core@4.4.4)
+      '@uppy/core': 4.4.4
+      '@uppy/provider-views': 4.4.3(@uppy/core@4.4.4)
       '@uppy/utils': 6.1.3
       preact: 10.26.4
 
@@ -5859,6 +5942,14 @@ snapshots:
   '@uppy/informer@4.2.1(@uppy/core@4.4.4)':
     dependencies:
       '@uppy/core': 4.4.4
+      '@uppy/utils': 6.1.3
+      preact: 10.26.4
+
+  '@uppy/onedrive@4.2.3(@uppy/core@4.4.4)':
+    dependencies:
+      '@uppy/companion-client': 4.4.1(@uppy/core@4.4.4)
+      '@uppy/core': 4.4.4
+      '@uppy/provider-views': 4.4.3(@uppy/core@4.4.4)
       '@uppy/utils': 6.1.3
       preact: 10.26.4
 
@@ -6234,6 +6325,8 @@ snapshots:
   async-function@1.0.0: {}
 
   asynckit@0.4.0: {}
+
+  attr-accept@2.2.5: {}
 
   available-typed-arrays@1.0.7:
     dependencies:
@@ -6893,6 +6986,10 @@ snapshots:
   file-entry-cache@8.0.0:
     dependencies:
       flat-cache: 4.0.1
+
+  file-selector@2.1.2:
+    dependencies:
+      tslib: 2.8.1
 
   fill-range@7.1.1:
     dependencies:
@@ -7726,6 +7823,13 @@ snapshots:
     dependencies:
       react: 19.1.0
       scheduler: 0.26.0
+
+  react-dropzone@14.3.8(react@19.1.0):
+    dependencies:
+      attr-accept: 2.2.5
+      file-selector: 2.1.2
+      prop-types: 15.8.1
+      react: 19.1.0
 
   react-is@16.13.1: {}
 
