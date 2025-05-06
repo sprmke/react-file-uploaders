@@ -373,7 +373,7 @@ export default function DropzoneFileUploader({ onUploadComplete, onError }: File
           </div>
 
           {files.length > 0 && (
-            <div className="space-y-2">
+            <div className="space-y-2 overflow-y-auto max-h-[300px]">
               {files.map(file => (
                 <div
                   key={file.id}
@@ -403,23 +403,23 @@ export default function DropzoneFileUploader({ onUploadComplete, onError }: File
                   </div>
                 </div>
               ))}
-
-              <Button
-                onClick={handleUpload}
-                disabled={isUploading || files.every(f => f.status === 'success')}
-                className="w-full"
-              >
-                {isUploading ? (
-                  <>
-                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                    Uploading...
-                  </>
-                ) : (
-                  'Upload Files'
-                )}
-              </Button>
             </div>
           )}
+
+          <Button
+            onClick={handleUpload}
+            disabled={isUploading || files.every(f => f.status === 'success')}
+            className="w-full"
+          >
+            {isUploading ? (
+              <>
+                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                Uploading...
+              </>
+            ) : (
+              'Upload Files'
+            )}
+          </Button>
         </div>
       </DialogContent>
     </Dialog>
