@@ -361,6 +361,19 @@ export default function DropzoneFileUploader({ onUploadComplete, onError }: File
     };
   }, [files]);
 
+  useEffect(() => {
+    // Clear files when dialog closes
+    if (!open) {
+      // Revoke all object URLs before clearing files
+      files.forEach(file => {
+        if (file.preview) {
+          URL.revokeObjectURL(file.preview);
+        }
+      });
+      setFiles([]);
+    }
+  }, [open]);
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
