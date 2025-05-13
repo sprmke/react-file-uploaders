@@ -350,6 +350,19 @@ export default function DropzoneFileUploader({ onUploadComplete, onError }: File
     return `${parseFloat((bytes / Math.pow(k, i)).toFixed(2))} ${sizes[i]}`;
   };
 
+  const handleOpenChange = (isOpen: boolean) => {
+    if (!isOpen && files.length) {
+      // Revoke all object URLs before clearing files
+      files.forEach(file => {
+        if (file.preview) {
+          URL.revokeObjectURL(file.preview);
+        }
+      });
+      setFiles([]);
+    }
+    setOpen(isOpen);
+  };
+
   useEffect(() => {
     // Cleanup function to revoke object URLs when component unmounts
     return () => {
@@ -361,21 +374,8 @@ export default function DropzoneFileUploader({ onUploadComplete, onError }: File
     };
   }, [files]);
 
-  useEffect(() => {
-    // Clear files when dialog closes
-    if (!open && files.length) {
-      // Revoke all object URLs before clearing files
-      files.forEach(file => {
-        if (file.preview) {
-          URL.revokeObjectURL(file.preview);
-        }
-      });
-      setFiles([]);
-    }
-  }, [open, files]);
-
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>
         <Button>Upload Files</Button>
       </DialogTrigger>
