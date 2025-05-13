@@ -27,6 +27,7 @@ interface FileWithPreview extends File {
   uploadProgress: number;
   status: 'pending' | 'uploading' | 'success' | 'error';
   errorMessage?: string;
+  originalFile: File;
 }
 
 const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 5MB
@@ -82,6 +83,7 @@ export default function DropzoneFileUploader({ onUploadComplete, onError }: File
 
       const fileWithPreview: FileWithPreview = {
         ...file,
+        originalFile: file,
         preview: isImage ? URL.createObjectURL(file) : undefined,
         id: `${file.name}-${Date.now()}`,
         uploadProgress: 0,
@@ -193,7 +195,7 @@ export default function DropzoneFileUploader({ onUploadComplete, onError }: File
         };
 
         xhr.onerror = () => reject(new Error('Upload failed'));
-        xhr.send(file);
+        xhr.send(file.originalFile);
       });
     } catch (error) {
       throw error;
@@ -307,9 +309,9 @@ export default function DropzoneFileUploader({ onUploadComplete, onError }: File
   const getStatusIcon = (status: FileWithPreview['status']) => {
     switch (status) {
       case 'success':
-        return <CheckCircle2 className="w-5 h-5 text-green-500" />;
+        return <CheckCircle2 data-testid="upload-success-icon" className="w-5 h-5 text-green-500" />;
       case 'error':
-        return <AlertCircle className="w-5 h-5 text-red-500" />;
+        return <AlertCircle data-testid="upload-error-icon" className="w-5 h-5 text-red-500" />;
       case 'uploading':
         return <Loader2 className="w-5 h-5 animate-spin" />;
       default:
