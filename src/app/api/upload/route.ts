@@ -11,6 +11,7 @@ const s3Client = new S3Client({
 });
 
 // Helper function to handle CORS
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function corsResponse(data: any, status = 200) {
   return new NextResponse(JSON.stringify(data), {
     status,

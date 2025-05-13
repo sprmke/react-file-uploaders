@@ -363,7 +363,7 @@ export default function DropzoneFileUploader({ onUploadComplete, onError }: File
 
   useEffect(() => {
     // Clear files when dialog closes
-    if (!open) {
+    if (!open && files.length) {
       // Revoke all object URLs before clearing files
       files.forEach(file => {
         if (file.preview) {
@@ -372,7 +372,7 @@ export default function DropzoneFileUploader({ onUploadComplete, onError }: File
       });
       setFiles([]);
     }
-  }, [open]);
+  }, [open, files]);
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>

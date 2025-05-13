@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useRef, useCallback } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Uppy, { UppyFile } from '@uppy/core';
 import type { Meta } from '@uppy/core';
 import AwsS3 from '@uppy/aws-s3';
@@ -115,7 +115,7 @@ export default function UppyFileUploader({ onUploadComplete, onError }: FileUplo
       };
     });
 
-    uppyInstance.on('upload-success', async (file: UppyFile<Meta, Record<string, never>> | undefined, response: any) => {
+    uppyInstance.on('upload-success', async (file: UppyFile<Meta, Record<string, never>> | undefined, response: { body?: Record<string, never> | undefined; status: number; bytesUploaded?: number; uploadURL?: string; }) => {
       if (!file?.name || !file?.id) return;
       
       console.log('File upload success:', file.name);
@@ -238,6 +238,7 @@ export default function UppyFileUploader({ onUploadComplete, onError }: FileUplo
               poweredBy: 'Powered by %{uppy}',
               removeFile: 'Remove file',
               done: 'Done'
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             } as any
           }}
         />
