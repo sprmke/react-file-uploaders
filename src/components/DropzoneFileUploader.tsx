@@ -28,6 +28,7 @@ interface FileWithPreview extends File {
   status: 'pending' | 'uploading' | 'success' | 'error';
   errorMessage?: string;
   originalFile: File;
+  xhr?: XMLHttpRequest;
 }
 
 const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 5MB
@@ -124,11 +125,22 @@ export default function DropzoneFileUploader({ onUploadComplete, onError }: File
 
   const removeFile = (fileId: string) => {
     setFiles(prev => {
-      const filtered = prev.filter(f => f.id !== fileId);
-      const removedFile = prev.find(f => f.id === fileId);
-      if (removedFile?.preview) {
-        URL.revokeObjectURL(removedFile.preview);
+      const fileToRemove = prev.find(f => f.id === fileId);
+      
+      if (fileToRemove?.xhr && fileToRemove.status === 'uploading') {
+        fileToRemove.xhr.abort();
       }
+      
+      const filtered = prev.filter(f => f.id !== fileId);
+      if (fileToRemove?.preview) {
+        URL.revokeObjectURL(fileToRemove.preview);
+      }
+
+      const hasUploadingFiles = filtered.some(f => f.status === 'uploading');
+      if (!hasUploadingFiles) {
+        setIsUploading(false);
+      }
+
       return filtered;
     });
   };
@@ -156,6 +168,15 @@ export default function DropzoneFileUploader({ onUploadComplete, onError }: File
 
       // Upload file with progress tracking
       const xhr = new XMLHttpRequest();
+      
+      setFiles(prev =>
+        prev.map(f =>
+          f.id === file.id
+            ? { ...f, xhr }
+            : f
+        )
+      );
+      
       xhr.open('PUT', uploadURL);
       xhr.setRequestHeader('Content-Type', file.type);
 
@@ -398,7 +419,7 @@ export default function DropzoneFileUploader({ onUploadComplete, onError }: File
                     <button
                       onClick={() => removeFile(file.id)}
                       className="p-1 rounded-full hover:bg-muted cursor-pointer"
-                      disabled={file.status === 'uploading'}
+                      aria-label={file.status === 'uploading' ? "Cancel upload" : "Remove file"}
                     >
                       <X className="w-4 h-4" />
                     </button>
