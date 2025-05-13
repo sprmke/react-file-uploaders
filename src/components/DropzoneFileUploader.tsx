@@ -397,7 +397,7 @@ export default function DropzoneFileUploader({ onUploadComplete, onError }: File
 
           {files.length > 0 && (
             <div className="space-y-2 overflow-y-auto max-h-[300px]">
-              {files.map(file => (
+              {files.map((file, index) => (
                 <div
                   key={file.id}
                   className="flex items-center gap-4 p-3 border rounded-lg bg-muted/30"
@@ -420,6 +420,7 @@ export default function DropzoneFileUploader({ onUploadComplete, onError }: File
                       onClick={() => removeFile(file.id)}
                       className="p-1 rounded-full hover:bg-muted cursor-pointer"
                       aria-label={file.status === 'uploading' ? "Cancel upload" : "Remove file"}
+                      data-testid={`cancel-upload-button-${index}`}
                     >
                       <X className="w-4 h-4" />
                     </button>
